@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SampleMultiModuleProject">
         <activity
-            android:name=".MainActivity"
+            android:name="com.sample.ru.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

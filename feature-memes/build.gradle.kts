@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("kotlin-android")
     id("kotlin-kapt")
     id("io.gitlab.arturbosch.detekt")
@@ -9,12 +9,8 @@ android {
     compileSdk = ConfigProject.compileSdk
 
     defaultConfig {
-        applicationId = ConfigProject.packageName
         minSdk = ConfigProject.minSDK
         targetSdk = ConfigProject.targetSDK
-        versionCode = ConfigProject.versionCode
-        versionName = ConfigProject.versionName
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
@@ -57,9 +53,6 @@ dependencies {
     implementation(project(":module-injector"))
     implementation(project(":network"))
     implementation(project(":navigation"))
-    implementation(project(":feature-photo"))
-    implementation(project(":feature-news"))
-    implementation(project(":feature-memes"))
 
     //Base
     implementation(ProjectDependencies.Base.coreKtx)
@@ -89,7 +82,7 @@ dependencies {
     //DI
     implementation(ProjectDependencies.Dagger.android)
     implementation(ProjectDependencies.Dagger.support)
-    implementation(ProjectDependencies.Dagger.compiler)
+    kapt(ProjectDependencies.Dagger.compiler)
 
     //Navigation
     implementation(ProjectDependencies.ModoNavigation.modo)
@@ -110,11 +103,7 @@ dependencies {
     implementation(ProjectDependencies.Coroutines.coroutinesCore)
     implementation(ProjectDependencies.Coroutines.coroutinesAndroid)
 
-   //DebugTools
+    //DebugTools
     implementation(ProjectDependencies.DebugTools.timber)
 
-    //Test
-    testImplementation(ProjectDependencies.Test.jUnit)
-    androidTestImplementation(ProjectDependencies.Test.androidJUnit)
-    androidTestImplementation(ProjectDependencies.Test.espresso)
 }
