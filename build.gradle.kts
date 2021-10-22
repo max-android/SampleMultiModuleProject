@@ -5,13 +5,14 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:7.0.3")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31")
+        classpath(ProjectDependencies.ProjectPlugin.gradle)
+        classpath(ProjectDependencies.ProjectPlugin.kotlin)
     }
 }
 
 plugins {
-    id("io.gitlab.arturbosch.detekt").version("1.18.1").apply(false)
+    id(ProjectDependencies.ProjectPlugin.detekt)
+        .version(ProjectDependencies.ProjectPlugin.detektVersion).apply(false)
 }
 
 tasks {
