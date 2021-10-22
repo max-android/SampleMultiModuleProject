@@ -7,3 +7,9 @@ dependencyResolutionManagement {
 }
 rootProject.name = "SampleMultiModuleProject"
 include(":app")
+include(":network")
+include(":module-injector")
+include(":feature-memes")
+include(":feature-news")
+include(":feature-photo")
+include(":navigation")

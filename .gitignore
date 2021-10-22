@@ -29,3 +29,6 @@ out/
 
 # Log Files
 *.log
+
+/buildSrc/.gradle
+/buildSrc/build
