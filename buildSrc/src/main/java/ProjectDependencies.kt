@@ -13,6 +13,7 @@ object ProjectDependencies {
         const val appCompat = "androidx.appcompat:appcompat:1.3.1"
         const val material = "com.google.android.material:material:1.4.0"
         const val annotation = "androidx.annotation:annotation:1.2.0"
+        const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.6"
     }
 
     object Compose {
@@ -45,6 +46,7 @@ object ProjectDependencies {
         const val android = "com.google.dagger:dagger-android:$version"
         const val support = "com.google.dagger:dagger-android-support:$version"
         const val compiler = "com.google.dagger:dagger-compiler:$version"
+        const val kotlinxMetadata = "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.2.0"
     }
 
     object Room {
@@ -57,6 +59,7 @@ object ProjectDependencies {
 
     object ModoNavigation {
         const val modo = "com.github.terrakok:modo:0.6.1"
+        const val modoRender = "com.github.terrakok:modo-render-android-fm:0.6.1"
     }
 
     object Lifecycle {

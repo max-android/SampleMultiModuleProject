@@ -3,6 +3,7 @@ plugins {
     id("kotlin-android")
     id("kotlin-kapt")
     id("io.gitlab.arturbosch.detekt")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -60,6 +61,7 @@ dependencies {
     implementation(project(":feature-photo"))
     implementation(project(":feature-news"))
     implementation(project(":feature-memes"))
+    implementation(project(":core"))
 
     //Base
     implementation(ProjectDependencies.Base.coreKtx)
@@ -89,10 +91,11 @@ dependencies {
     //DI
     implementation(ProjectDependencies.Dagger.android)
     implementation(ProjectDependencies.Dagger.support)
-    implementation(ProjectDependencies.Dagger.compiler)
+    kapt(ProjectDependencies.Dagger.compiler)
 
     //Navigation
     implementation(ProjectDependencies.ModoNavigation.modo)
+    implementation(ProjectDependencies.ModoNavigation.modoRender)
 
     //Lifecycle
     implementation(ProjectDependencies.Lifecycle.lifecycleKtx)

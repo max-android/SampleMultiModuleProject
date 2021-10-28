@@ -4,6 +4,18 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/2021/SampleMultiModuleProject/app/src/main/res/layout/activity_main.xml" value="0.4041666666666667" />
+        <entry key="..\:/2021/SampleMultiModuleProject/app/src/main/res/menu/bottom_menu.xml" value="0.4041666666666667" />
+        <entry key="..\:/2021/SampleMultiModuleProject/feature-memes/src/debug/res/layout/fragment_user_detail.xml" value="0.4041666666666667" />
+        <entry key="..\:/2021/SampleMultiModuleProject/feature-memes/src/debug/res/layout/fragment_users.xml" value="0.4041666666666667" />
+        <entry key="..\:/2021/SampleMultiModuleProject/feature-memes/src/main/res/layout/fragment_memes.xml" value="0.4041666666666667" />
+        <entry key="..\:/2021/SampleMultiModuleProject/feature-memes/src/main/res/layout/fragment_memes_detail.xml" value="0.4041666666666667" />
+        <entry key="..\:/2021/SampleMultiModuleProject/feature-memes/src/main/res/layout/fragment_users.xml" value="0.4041666666666667" />
+        <entry key="..\:/2021/SampleMultiModuleProject/feature-news/src/main/res/layout/fragment_news.xml" value="0.4041666666666667" />
+        <entry key="..\:/2021/SampleMultiModuleProject/feature-news/src/main/res/layout/fragment_news_detail.xml" value="0.4041666666666667" />
+        <entry key="..\:/2021/SampleMultiModuleProject/feature-news/src/main/res/layout/fragment_users.xml" value="0.4041666666666667" />
+        <entry key="..\:/2021/SampleMultiModuleProject/feature-photo/src/main/res/layout/fragment_photo.xml" value="0.4041666666666667" />
+        <entry key="..\:/2021/SampleMultiModuleProject/feature-photo/src/main/res/layout/fragment_photo_detail.xml" value="0.4041666666666667" />
+        <entry key="..\:/2021/SampleMultiModuleProject/feature-photo/src/main/res/layout/fragment_users.xml" value="0.4041666666666667" />
       </map>
     </option>
   </component>

@@ -3,6 +3,7 @@ plugins {
     id("kotlin-android")
     id("kotlin-kapt")
     id("io.gitlab.arturbosch.detekt")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -53,12 +54,14 @@ dependencies {
     implementation(project(":module-injector"))
     implementation(project(":network"))
     implementation(project(":navigation"))
+    implementation(project(":core"))
 
     //Base
     implementation(ProjectDependencies.Base.coreKtx)
     implementation(ProjectDependencies.Base.annotation)
     implementation(ProjectDependencies.Base.appCompat)
     implementation(ProjectDependencies.Base.material)
+    implementation(ProjectDependencies.Base.fragmentKtx)
 
     //Compose
     implementation(ProjectDependencies.Compose.activityCompose)
@@ -86,6 +89,7 @@ dependencies {
 
     //Navigation
     implementation(ProjectDependencies.ModoNavigation.modo)
+    implementation(ProjectDependencies.ModoNavigation.modoRender)
 
     //Lifecycle
     implementation(ProjectDependencies.Lifecycle.lifecycleKtx)

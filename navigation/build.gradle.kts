@@ -49,6 +49,7 @@ dependencies {
 
     //Navigation
     implementation(ProjectDependencies.ModoNavigation.modo)
+    implementation(ProjectDependencies.ModoNavigation.modoRender)
 
     //Coroutines
     implementation(ProjectDependencies.Coroutines.coroutinesCore)
