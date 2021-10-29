@@ -13,6 +13,7 @@ class NewsFragment: Fragment(R.layout.fragment_news)  {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.showContent()
         view.findViewById<Button>(R.id.showNewsDetailButton).setOnClickListener {
             viewModel.clickOnItem()
         }

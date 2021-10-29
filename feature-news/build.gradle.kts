@@ -110,4 +110,7 @@ dependencies {
     //DebugTools
     implementation(ProjectDependencies.DebugTools.timber)
 
+    //Check Api Result
+    implementation(ProjectDependencies.Networking.retrofit)
+
 }

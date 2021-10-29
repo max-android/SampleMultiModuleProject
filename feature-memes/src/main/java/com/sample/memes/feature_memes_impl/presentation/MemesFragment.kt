@@ -13,6 +13,7 @@ class MemesFragment: Fragment(R.layout.fragment_memes) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.showContent()
         view.findViewById<Button>(R.id.showDetailMemButton).setOnClickListener {
             viewModel.clickOnItem()
         }

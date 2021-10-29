@@ -7,6 +7,10 @@ import com.sample.memes.feature_memes_impl.di.MemesFeatureDependencies
 import com.sample.navigation.core_nav_api.NavigatorApi
 import com.sample.navigation.core_nav_impl.Navigator
 import com.sample.navigation.core_nav_impl.di.NavigatorComponent
+import com.sample.network.core_network_impl.data.rest.MemesRestService
+import com.sample.network.core_network_impl.data.rest.NewsRestService
+import com.sample.network.core_network_impl.data.rest.PhotoRestService
+import com.sample.network.core_network_impl.di.CoreNetworkComponent
 import com.sample.news.feature_news_api.NewsFeatureApi
 import com.sample.news.feature_news_impl.di.NewsFeatureComponentHolder
 import com.sample.news.feature_news_impl.di.NewsFeatureDependencies
@@ -37,9 +41,9 @@ class AppModule {
     @Provides
     fun provideMemesFeatureDependencies(): MemesFeatureDependencies {
         return object : MemesFeatureDependencies {
-//            override fun apiRestService(): ApiRestService {
-//                return CoreNetworkComponent.get().restService()
-//            }
+            override fun apiMemesRestService(): MemesRestService {
+                return CoreNetworkComponent.get().memesRestService()
+            }
 
             override fun navigator(): Navigator {
                 return NavigatorComponent.get().navigator()
@@ -57,9 +61,9 @@ class AppModule {
     @Provides
     fun provideNewsFeatureDependencies(): NewsFeatureDependencies {
         return object : NewsFeatureDependencies {
-//            override fun apiRestService(): ApiRestService {
-//                return CoreNetworkComponent.get().restService()
-//            }
+            override fun apiNewsRestService(): NewsRestService {
+                return CoreNetworkComponent.get().newsRestService()
+            }
 
             override fun navigator(): Navigator {
                 return NavigatorComponent.get().navigator()
@@ -77,9 +81,9 @@ class AppModule {
     @Provides
     fun providePhotoFeatureDependencies(): PhotoFeatureDependencies {
         return object : PhotoFeatureDependencies {
-//            override fun apiRestService(): ApiRestService {
-//                return CoreNetworkComponent.get().restService()
-//            }
+            override fun apiPhotoRestService(): PhotoRestService {
+                return CoreNetworkComponent.get().photoRestService()
+            }
 
             override fun navigator(): Navigator {
                 return NavigatorComponent.get().navigator()
@@ -92,6 +96,5 @@ class AppModule {
         PhotoFeatureComponentHolder.init(dependencies)
         return PhotoFeatureComponentHolder.get()
     }
-
 
 }

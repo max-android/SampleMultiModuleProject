@@ -13,6 +13,7 @@ class PhotoFragment : Fragment(R.layout.fragment_photo) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.showContent()
         view.findViewById<Button>(R.id.showPhotoDetailButton).setOnClickListener {
             viewModel.clickOnItem()
         }

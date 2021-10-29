@@ -15,6 +15,9 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        buildConfigField ("String", "NEWS_BASE_URL", "\"https://api.spaceflightnewsapi.net/v3/\"")
+        buildConfigField ("String" ,"MEMES_BASE_URL", "\"https://api.doge-meme.lol/v1/\"")
+        buildConfigField ("String", "PHOTO_BASE_URL", "\"https://picsum.photos/\"")
     }
 
     buildTypes {
