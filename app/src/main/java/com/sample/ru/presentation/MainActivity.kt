@@ -7,6 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import com.github.terrakok.modo.Modo
 import com.github.terrakok.modo.android.ModoRender
 import com.github.terrakok.modo.android.init
+import com.github.terrakok.modo.newStack
 import com.github.terrakok.modo.replace
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.sample.memes.feature_memes_impl.navigation.MemesScreen
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         initNavigation(savedInstanceState)
         initViews()
         observeState()
+        viewModel.obtainEvent(InitFirstLaunch)
     }
 
     override fun onResume() {
@@ -47,7 +49,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun initNavigation(savedInstanceState: Bundle?) {
         router = navigatorApi.navigator().getRouter()
-        viewModel.obtainEvent(ShowMemesEvent)
         router.init(savedInstanceState, MemesScreen())
     }
 
@@ -74,9 +75,9 @@ class MainActivity : AppCompatActivity() {
     private fun renderState(state: MainState?) {
         state?.let {
             when (state) {
-                is StartMemesScreen -> router.replace(MemesScreen())
-                is StartNewsScreen -> router.replace(NewsScreen())
-                is StartPhotoScreen -> router.replace(PhotoScreen())
+                is StartMemesScreen -> router.newStack(MemesScreen())
+                is StartNewsScreen -> router.newStack(NewsScreen())
+                is StartPhotoScreen -> router.newStack(PhotoScreen())
             }
         }
     }

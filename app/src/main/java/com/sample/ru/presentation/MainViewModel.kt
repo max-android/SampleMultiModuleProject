@@ -14,10 +14,15 @@ class MainViewModel : ViewModel(), EventHandler<MainEvent> {
 
     override fun obtainEvent(event: MainEvent) {
         when (event) {
+            is InitFirstLaunch -> initFirstLaunchAction()
             is ShowMemesEvent -> initMemesFeatureAction()
             is ShowPhotoEvent -> initPhotoFeatureAction()
             is ShowNewsEvent -> initNewsFeatureAction()
         }
+    }
+
+    private fun initFirstLaunchAction() {
+        AppComponent.get().plusMemesFeatureApi()
     }
 
     private fun initMemesFeatureAction() {
