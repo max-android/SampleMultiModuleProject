@@ -1,4 +1,4 @@
-package com.sample.news.feature_news_impl.presentation
+package com.sample.memes.feature_memes_impl.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -15,70 +15,68 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import coil.transform.RoundedCornersTransformation
-import com.sample.network.core_network_impl.data.model.ArticleModel
+import com.sample.core.toDate
 import com.sample.network.core_network_impl.data.model.BaseModel
+import com.sample.network.core_network_impl.data.model.MemModel
+import com.sample.theme.ui.composeContext
+import androidx.compose.runtime.getValue
 import com.sample.theme.ui.EmptyListUi
 import com.sample.theme.ui.LoadError
-import androidx.compose.runtime.getValue
-import com.sample.core.toDate
-import com.sample.news.R
-import com.sample.theme.ui.composeContext
+import com.sample.memes.R
 
 @Composable
-fun ListNewsComponent(viewModel: NewsViewModel, navigateToArticle: (ArticleModel) -> Unit) {
-    val state: NewsState? by viewModel.state.collectAsState()
-    ObserveState(state, navigateToArticle)
+fun MemesComponent(viewModel: MemesViewModel, navigateToMem: (MemModel) -> Unit) {
+    val state: MemesState? by viewModel.state.collectAsState()
+    ObserveState(state, navigateToMem)
 }
 
 @Composable
-private fun ObserveState(state: NewsState?, navigateToArticle: (ArticleModel) -> Unit) {
-    state?.let { newsState ->
-        when (newsState) {
-            is SuccessNews -> {
-                NewsUi(newsState.articleModels, navigateToArticle)
+private fun ObserveState(state: MemesState?, navigateToMem: (MemModel) -> Unit) {
+    state?.let { memState ->
+        when (memState) {
+            is SuccessMemes -> {
+                MemesUi(memState.memes, navigateToMem)
             }
-            is ErrorNews -> {
-                LoadError()
-            }
-            is EmptyListNews -> {
+            is EmptyMemes -> {
                 EmptyListUi()
             }
-        }
-    }
-}
-
-@Composable
-private fun NewsUi(listNews: List<BaseModel>, navigateToArticle: (ArticleModel) -> Unit) {
-    LazyColumn(
-        contentPadding = PaddingValues(
-            start = 8.dp, end = 8.dp, top = 16.dp, bottom = 68.dp
-        ),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        itemsIndexed(listNews) { _, item ->
-            if (item is ArticleModel) {
-                ArticleItem(item, navigateToArticle)
+            is ErrorMemes -> {
+                LoadError()
             }
         }
     }
 }
 
 @Composable
-private fun ArticleItem(article: ArticleModel, click: (ArticleModel) -> Unit) {
+private fun MemesUi(listMemes: List<BaseModel>, navigateToMem: (MemModel) -> Unit) {
+    LazyColumn(
+        contentPadding = PaddingValues(start = 8.dp, end = 8.dp, top = 16.dp, bottom = 68.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        itemsIndexed(listMemes) { _, item ->
+            if (item is MemModel) {
+                MemItem(item, navigateToMem)
+            }
+        }
+    }
+}
+
+@Composable
+private fun MemItem(mem: MemModel, click: (MemModel) -> Unit) {
     Card(
+        elevation = 4.dp,
         modifier = Modifier
             .wrapContentHeight()
             .fillMaxWidth()
             .clickable {
-                click.invoke(article)
+                click.invoke(mem)
             },
         shape = RoundedCornerShape(16.dp),
-        elevation = 4.dp
     ) {
         Column() {
             Image(
                 painter = rememberImagePainter(
-                    data = article.imageUrl,
+                    data = mem.memUrl,
                     builder = {
                         crossfade(true)
                         placeholder(R.drawable.ic_placeholder)
@@ -97,14 +95,14 @@ private fun ArticleItem(article: ArticleModel, click: (ArticleModel) -> Unit) {
                     .padding(8.dp),
                 style = MaterialTheme.typography.body1,
                 color = MaterialTheme.colors.onPrimary,
-                text = article.title,
+                text = mem.title,
             )
             Text(
                 modifier = Modifier.padding(8.dp),
                 style = MaterialTheme.typography.caption,
                 color = MaterialTheme.colors.onPrimary,
                 text = composeContext().getString(
-                    R.string.new_created, article.publishedAt.toDate(), article.newsSite
+                    R.string.memes_created, mem.created.toDate(), mem.author
                 ),
             )
         }

@@ -7,8 +7,11 @@ import com.sample.memes.feature_memes_impl.data.MemesRepository
 import com.sample.memes.feature_memes_impl.di.MemesFeatureComponentHolder
 import com.sample.memes.feature_memes_impl.navigation.MemesDetailScreen
 import com.sample.navigation.core_nav_impl.Navigator
+import com.sample.network.core_network_impl.data.model.MemModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 class MemesViewModel : ViewModel() {
@@ -19,24 +22,22 @@ class MemesViewModel : ViewModel() {
     @Inject
     internal lateinit var repository: MemesRepository
 
+    private val _state = MutableStateFlow<MemesState?>(null)
+    val state: StateFlow<MemesState?> = _state.asStateFlow()
+
     init {
         MemesFeatureComponentHolder.getComponent().inject(this)
+        showContent()
     }
 
-    fun showContent() {
+    private fun showContent() {
         viewModelScope.launch {
-            try {
-                (repository.loadMemesData() as SuccessMemes).memes.forEach {
-                  Timber.tag("--DATA").i("---Memes:"+it.toString())
-                }
-            } catch (e: Exception) {
-
-            }
+            _state.emit(repository.loadMemesData())
         }
     }
 
-    fun clickOnItem() {
-        navigator.getRouter().forward(MemesDetailScreen())
+    fun clickOnItem(memeModel: MemModel) {
+        navigator.getRouter().forward(MemesDetailScreen(memeModel))
     }
 
     override fun onCleared() {

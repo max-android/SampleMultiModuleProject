@@ -52,5 +52,4 @@ class NewsDetailFragment : Fragment(R.layout.fragment_news_detail) {
         private const val NEWS_KEY = "news"
     }
 
-
 }

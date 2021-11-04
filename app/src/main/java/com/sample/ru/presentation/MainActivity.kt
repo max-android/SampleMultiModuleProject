@@ -8,7 +8,6 @@ import com.github.terrakok.modo.Modo
 import com.github.terrakok.modo.android.ModoRender
 import com.github.terrakok.modo.android.init
 import com.github.terrakok.modo.newStack
-import com.github.terrakok.modo.replace
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.sample.memes.feature_memes_impl.navigation.MemesScreen
 import com.sample.navigation.core_nav_api.NavigatorApi

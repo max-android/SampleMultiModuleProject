@@ -1,4 +1,4 @@
-package com.sample.news.feature_news_impl.presentation
+package com.sample.memes.feature_memes_impl.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -12,21 +12,19 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import coil.transform.RoundedCornersTransformation
 import com.sample.core.toDate
-import com.sample.network.core_network_impl.data.model.ArticleModel
+import com.sample.network.core_network_impl.data.model.MemModel
+import com.sample.memes.R
 import com.sample.theme.ui.composeContext
-import com.sample.news.R
 
 @Composable
-fun ArticleUi(article: ArticleModel) {
+fun MemUi(mem: MemModel) {
     val scrollState = rememberScrollState()
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(scrollState)
-    ) {
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .verticalScroll(scrollState)) {
         Image(
             painter = rememberImagePainter(
-                data = article.imageUrl,
+                data = mem.memUrl,
                 builder = {
                     crossfade(true)
                     placeholder(R.drawable.ic_placeholder)
@@ -43,24 +41,16 @@ fun ArticleUi(article: ArticleModel) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp),
-            color = MaterialTheme.colors.onPrimary,
             style = MaterialTheme.typography.body1,
-            text = article.title,
-        )
-        Text(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
             color = MaterialTheme.colors.onPrimary,
-            style = MaterialTheme.typography.body2,
-            text = article.summary,
+            text = mem.title,
         )
         Text(
             modifier = Modifier.padding(8.dp),
             style = MaterialTheme.typography.caption,
             color = MaterialTheme.colors.onPrimary,
             text = composeContext().getString(
-                R.string.new_created, article.publishedAt.toDate(), article.newsSite
+                R.string.memes_created, mem.created.toDate(), mem.author
             ),
         )
     }
