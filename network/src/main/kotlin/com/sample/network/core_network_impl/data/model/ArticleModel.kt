@@ -1,7 +1,10 @@
 package com.sample.network.core_network_impl.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class ArticleModel(
     @SerializedName("id")
     val id: Int,
@@ -17,4 +20,4 @@ data class ArticleModel(
     val newsSite: String,
     @SerializedName("publishedAt")
     val publishedAt: String,
-): BaseModel
+): BaseModel, Parcelable

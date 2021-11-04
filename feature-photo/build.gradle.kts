@@ -55,6 +55,7 @@ dependencies {
     implementation(project(":network"))
     implementation(project(":navigation"))
     implementation(project(":core"))
+    implementation(project(":app-theme"))
 
     //Base
     implementation(ProjectDependencies.Base.coreKtx)
@@ -65,6 +66,7 @@ dependencies {
 
     //Compose
     implementation(ProjectDependencies.Compose.activityCompose)
+    implementation(ProjectDependencies.Compose.material)
     implementation(ProjectDependencies.Compose.constraintLayoutCompose)
     implementation(ProjectDependencies.Compose.composeCompiler)
     implementation(ProjectDependencies.Compose.ui)
