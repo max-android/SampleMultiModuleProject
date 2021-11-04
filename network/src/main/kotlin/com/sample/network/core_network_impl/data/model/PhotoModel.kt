@@ -1,7 +1,10 @@
 package com.sample.network.core_network_impl.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class PhotoModel(
     @SerializedName("id")
     val id: String,
@@ -11,4 +14,4 @@ data class PhotoModel(
     val url: String,
     @SerializedName("download_url")
     val downloadUrl: String
-): BaseModel
+): BaseModel, Parcelable

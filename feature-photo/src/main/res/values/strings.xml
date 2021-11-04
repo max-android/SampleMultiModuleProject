@@ -1,3 +1,3 @@
-<resources>
-    <string name="new_created">Created %1$s by %2$s</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="photo_created" tools:ignore="ExtraTranslation">Created by %1$s</string>
 </resources>
