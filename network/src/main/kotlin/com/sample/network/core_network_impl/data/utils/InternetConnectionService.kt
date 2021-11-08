@@ -3,8 +3,9 @@ package com.sample.network.core_network_impl.data.utils
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import javax.inject.Inject
 
-class InternetConnectionService (private val context: Context) {
+class InternetConnectionService @Inject constructor(private val context: Context) {
 
     fun isOnline(): Boolean {
         val connectivityManager =

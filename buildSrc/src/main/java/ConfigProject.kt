@@ -1,7 +1,7 @@
 object ConfigProject {
 
     const val compileSdk = 31
-    const val minSDK = 21
+    const val minSDK = 23
     const val targetSDK = 31
 
     const val versionCode = 1

@@ -6,7 +6,7 @@ import javax.inject.Singleton
 
 @Component(modules = [NavigatorModule::class])
 @Singleton
-abstract class NavigatorComponent: NavigatorApi {
+abstract class NavigatorComponent : NavigatorApi {
 
     companion object {
         @Volatile
@@ -20,7 +20,7 @@ abstract class NavigatorComponent: NavigatorApi {
                     }
                 }
             }
-            return navigatorComponent!!
+            return navigatorComponent ?: throw RuntimeException("NavigatorComponent is not initialized yet.")
         }
     }
 

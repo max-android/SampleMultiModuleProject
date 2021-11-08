@@ -20,26 +20,26 @@ import javax.inject.Singleton
 @Module
 class NetworkModule {
 
-//    @Provides
-//    @Singleton
-//    fun provideInternetConnectionService(
-//        appContext: Context
-//    ): InternetConnectionService = InternetConnectionService(appContext)
-//
-//    @Provides
-//    @Singleton
-//    fun provideInternetInterceptor(
-//        netService: InternetConnectionService
-//    ): InternetInterceptor = InternetInterceptor(netService)
+    @Provides
+    @Singleton
+    fun provideInternetConnectionService(
+        appContext: Context
+    ): InternetConnectionService = InternetConnectionService(appContext)
+
+    @Provides
+    @Singleton
+    fun provideInternetInterceptor(
+        netService: InternetConnectionService
+    ): InternetInterceptor = InternetInterceptor(netService)
 
     @Provides
     @Singleton
     fun provideOkHttpClient(
-        //  netInterceptor: InternetInterceptor
+        netInterceptor: InternetInterceptor
     ): OkHttpClient =
         OkHttpClient.Builder()
             .apply {
-                // addInterceptor(netInterceptor)
+                addInterceptor(netInterceptor)
                 addInterceptor(HttpLoggingInterceptor().also {
                     it.level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
                     else HttpLoggingInterceptor.Level.NONE

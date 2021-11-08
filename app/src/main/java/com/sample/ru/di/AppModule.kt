@@ -7,10 +7,12 @@ import com.sample.memes.feature_memes_impl.di.MemesFeatureDependencies
 import com.sample.navigation.core_nav_api.NavigatorApi
 import com.sample.navigation.core_nav_impl.Navigator
 import com.sample.navigation.core_nav_impl.di.NavigatorComponent
+import com.sample.network.core_network_api.CoreNetworkApi
 import com.sample.network.core_network_impl.data.rest.MemesRestService
 import com.sample.network.core_network_impl.data.rest.NewsRestService
 import com.sample.network.core_network_impl.data.rest.PhotoRestService
-import com.sample.network.core_network_impl.di.CoreNetworkComponent
+import com.sample.network.core_network_impl.di.CoreNetworkComponentHolder
+import com.sample.network.core_network_impl.di.CoreNetworkDependencies
 import com.sample.news.feature_news_api.NewsFeatureApi
 import com.sample.news.feature_news_impl.di.NewsFeatureComponentHolder
 import com.sample.news.feature_news_impl.di.NewsFeatureDependencies
@@ -39,14 +41,34 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideMemesFeatureDependencies(): MemesFeatureDependencies {
+    fun provideCoreNetworkDependencies(context: Context): CoreNetworkDependencies {
+        return object : CoreNetworkDependencies {
+            override fun context(): Context {
+                return context
+            }
+        }
+    }
+
+    @Singleton
+    @Provides
+    fun provideCoreNetworkApi(dependencies: CoreNetworkDependencies): CoreNetworkApi {
+        CoreNetworkComponentHolder.init(dependencies)
+        return CoreNetworkComponentHolder.get()
+    }
+
+    @Singleton
+    @Provides
+    fun provideMemesFeatureDependencies(
+        coreNetworkApi: CoreNetworkApi,
+        navigatorApi: NavigatorApi
+    ): MemesFeatureDependencies {
         return object : MemesFeatureDependencies {
             override fun apiMemesRestService(): MemesRestService {
-                return CoreNetworkComponent.get().memesRestService()
+                return coreNetworkApi.memesRestService()
             }
 
             override fun navigator(): Navigator {
-                return NavigatorComponent.get().navigator()
+                return navigatorApi.navigator()
             }
         }
     }
@@ -59,14 +81,17 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideNewsFeatureDependencies(): NewsFeatureDependencies {
+    fun provideNewsFeatureDependencies(
+        coreNetworkApi: CoreNetworkApi,
+        navigatorApi: NavigatorApi
+    ): NewsFeatureDependencies {
         return object : NewsFeatureDependencies {
             override fun apiNewsRestService(): NewsRestService {
-                return CoreNetworkComponent.get().newsRestService()
+                return coreNetworkApi.newsRestService()
             }
 
             override fun navigator(): Navigator {
-                return NavigatorComponent.get().navigator()
+                return navigatorApi.navigator()
             }
         }
     }
@@ -79,14 +104,17 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun providePhotoFeatureDependencies(): PhotoFeatureDependencies {
+    fun providePhotoFeatureDependencies(
+        coreNetworkApi: CoreNetworkApi,
+        navigatorApi: NavigatorApi
+    ): PhotoFeatureDependencies {
         return object : PhotoFeatureDependencies {
             override fun apiPhotoRestService(): PhotoRestService {
-                return CoreNetworkComponent.get().photoRestService()
+                return coreNetworkApi.photoRestService()
             }
 
             override fun navigator(): Navigator {
-                return NavigatorComponent.get().navigator()
+                return navigatorApi.navigator()
             }
         }
     }

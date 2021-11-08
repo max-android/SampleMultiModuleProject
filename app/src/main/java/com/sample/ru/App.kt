@@ -6,14 +6,14 @@ import com.sample.ru.di.AppComponent
 import com.sample.ru.di.DaggerAppComponent
 import timber.log.Timber
 
-class App: Application() {
+class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
         initTimber()
         appContext = applicationContext
         initDI()
-        initRoute()
+        initComponentsCoreModules()
     }
 
     private fun initDI() {
@@ -21,17 +21,25 @@ class App: Application() {
         AppComponent.get().inject(this)
     }
 
-    private fun iniAppComponent() = DaggerAppComponent.builder()
-        .build()
+    private fun iniAppComponent() = DaggerAppComponent.builder().build()
+
+    private fun initComponentsCoreModules() {
+        initRoute()
+        initNetworkApi()
+    }
 
     private fun initRoute() {
-        AppComponent.get().getNavigatorApi().navigator().initRouter(this)
+        AppComponent.get().plusNavigatorApi().navigator().initRouter(this)
+    }
+
+    private fun initNetworkApi() {
+        AppComponent.get().plusNetworkApi()
     }
 
     private fun initTimber() {
-        // if (BuildConfig.DEBUG) {
-        Timber.plant(Timber.DebugTree())
-        // }
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
     }
 
     companion object {

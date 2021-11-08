@@ -8,9 +8,10 @@ interface ComponentHolder<C : BaseAPI, D : BaseDependencies> {
     //получаем компонент
     fun get(): C
 
+    //обнуляем компонент
     fun reset()
 }
-//реализует сторонние core сервисы - сейчас rest api
+//реализует сторонние core сервисы - например rest api и навигатор
 interface BaseDependencies
 
 //реализует методы для FeatureComponent и прочие core Component

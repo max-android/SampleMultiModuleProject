@@ -46,6 +46,14 @@ class MainActivity : AppCompatActivity() {
         super.onPause()
     }
 
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount == 1) {
+            finish()
+        } else {
+            super.onBackPressed()
+        }
+    }
+
     private fun initNavigation(savedInstanceState: Bundle?) {
         router = navigatorApi.navigator().getRouter()
         router.init(savedInstanceState, MemesScreen())
